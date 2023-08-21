@@ -30,9 +30,20 @@ sealed class BarberShopTheme {
         ),
       ),
     ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: ConstantsColors.brow,
+        side: const BorderSide(
+          color: ConstantsColors.brow,
+          width: 1,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        minimumSize: const Size.fromHeight(56),
         backgroundColor: ConstantsColors.brow,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(

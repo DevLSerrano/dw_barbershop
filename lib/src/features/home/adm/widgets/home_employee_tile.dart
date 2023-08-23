@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/ui/constants/constants_colors.dart';
 import '../../../../core/ui/constants/constants_image.dart';
 import '../../../../core/ui/icons/barbershop_icons.dart';
+import '../../../../model/user_model.dart';
 
 class HomeEmployeeTile extends StatelessWidget {
-  final networkImage = false;
-  const HomeEmployeeTile({super.key});
+  final UserModel employee;
+  const HomeEmployeeTile({
+    super.key,
+    required this.employee,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +33,9 @@ class HomeEmployeeTile extends StatelessWidget {
               color: ConstantsColors.grey,
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                image: switch (networkImage) {
-                  true => const NetworkImage(ConstantsImage.avatar),
-                  false => const AssetImage(ConstantsImage.avatar),
+                image: switch (employee.avatar) {
+                  final avatar? => NetworkImage(avatar),
+                  _ => const AssetImage(ConstantsImage.avatar),
                 } as ImageProvider<Object>,
                 fit: BoxFit.cover,
               ),
@@ -43,9 +47,9 @@ class HomeEmployeeTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Nome e sobrenome',
-                  style: TextStyle(
+                Text(
+                  employee.name,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),

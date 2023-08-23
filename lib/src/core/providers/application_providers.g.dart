@@ -95,5 +95,19 @@ final getMyBarberShopProvider = FutureProvider<BarbershopModel>.internal(
 );
 
 typedef GetMyBarberShopRef = FutureProviderRef<BarbershopModel>;
+String _$logoutHash() => r'3c84e5471c6a8e4eab8fcc8f05d897bf13d04a11';
+
+/// See also [logout].
+@ProviderFor(logout)
+final logoutProvider = AutoDisposeFutureProvider<void>.internal(
+  logout,
+  name: r'logoutProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$logoutHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef LogoutRef = AutoDisposeFutureProviderRef<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

@@ -85,4 +85,35 @@ class UserRepositoryImpl implements UserRepository {
       );
     }
   }
+
+  @override
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+    int barbershopId,
+  ) async {
+    try {
+      final Response(:List data) = await _restClient.auth.get(
+        '/users',
+        queryParameters: {
+          'barbershop_id': barbershopId,
+        },
+      );
+
+      final employees = data.map((e) => UserModelEmployee.fromMap(e)).toList();
+      return Success(employees);
+    } on DioException catch (e, s) {
+      log('Erro ao buscar Employees', error: e, stackTrace: s);
+      return Failure(
+        RepositoryException(
+          'Erro ao buscar Employees',
+        ),
+      );
+    } on ArgumentError catch (e, s) {
+      log('Erro ao converter Employees', error: e, stackTrace: s);
+      return Failure(
+        RepositoryException(
+          'Erro ao converter utilizador ADM',
+        ),
+      );
+    }
+  }
 }

@@ -16,4 +16,8 @@ abstract interface class UserRepository {
       String password,
     }) userData,
   );
+
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+    int barbershopId,
+  );
 }
